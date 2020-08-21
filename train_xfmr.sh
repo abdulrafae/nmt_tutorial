@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 SCRIPTS=mosesdecoder/scripts
-GPU=2
+GPU=0
 
 SRC=fr
 TRG=en
