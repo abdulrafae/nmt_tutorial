@@ -16,6 +16,7 @@ Train Convolutional Sequence-to-Sequence Model
 ```
 bash train_fconv.sh
 ```
+or
 
 Train Transformer Sequence-to-Sequence Model
 ```
