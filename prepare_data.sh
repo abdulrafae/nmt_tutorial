@@ -1,5 +1,15 @@
 #!/usr/bin/env bash
 
+#Uncomment to install required packages
+#pip install fairseq
+#pip install sacrebleu
+
+echo 'Cloning Moses github repository (for tokenization scripts)...'
+git clone https://github.com/moses-smt/mosesdecoder.git
+
+echo 'Cloning Subword NMT repository (for BPE pre-processing)...'
+git clone https://github.com/rsennrich/subword-nmt.git
+
 SCRIPTS=mosesdecoder/scripts
 TOKENIZER=$SCRIPTS/tokenizer/tokenizer.perl
 TCROOT=$SCRIPTS/recaser/
@@ -24,6 +34,7 @@ ORIG=orig
 
 mkdir -p $ORIG $TMP $PREP
 
+#(1) Download Parallel Data 
 echo "Downloading data from ${URL}..."
 cd $ORIG
 wget "$URL"
@@ -38,6 +49,8 @@ fi
 tar zxvf $GZ
 cd ..
 
+#(2) Extract Raw Data
+#(3) Tokenize Data
 echo "pre-processing train data..."
 for L in $SRC $TRG
  do
@@ -98,9 +111,11 @@ for L in $SRC $TRG
 	
 done
 
+#(4) Clean Data
 echo "cleaning train data..."
 perl $CLEAN -ratio 1.5 $TMP/train.tags.$LANG.tok $SRC $TRG $TMP/train.tok.clean 1 175
 
+#(4) Truecase Data
 perl $TCROOT/train-truecaser.perl -corpus $TMP/train.tok.clean.$SRC -model $PREP/truecase-model.$SRC
 perl $TCROOT/train-truecaser.perl -corpus $TMP/train.tok.clean.$TRG -model $PREP/truecase-model.$TRG
 
@@ -116,6 +131,7 @@ for L in $SRC $TRG
 	$TCROOT/truecase.perl -model $PREP/truecase-model.$L < $TMP/valid.tok.$L > $TMP/valid.tc.$L
 done
 
+#(5) Byte Pair Encoding
 TRAIN=$TMP/train.en-fr
 BPE_CODE=$PREP/code
 rm -f $TRAIN
