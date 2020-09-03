@@ -2,6 +2,7 @@
 
 Installing dependencies
 ```
+# Setting up fairseq toolkit
 git clone https://github.com/pytorch/fairseq
 cd fairseq
 pip install --editable ./
@@ -9,9 +10,13 @@ pip install --editable ./
 # on MacOS:
 # CFLAGS="-stdlib=libc++" pip install --editable ./
 
+# Installing evaluation packages
 pip install sacrebleu
 
+# Installing tokenization packages
 git clone https://github.com/moses-smt/mosesdecoder.git
+
+# Installing Byte-pair Encoding pacakges
 git clone https://github.com/rsennrich/subword-nmt.git
 ```
 
