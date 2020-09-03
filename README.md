@@ -2,7 +2,15 @@
 
 Installing dependencies
 ```
-pip install fairseq
+git clone https://github.com/pytorch/fairseq
+cd fairseq
+pip install --editable ./
+
+# on MacOS:
+# CFLAGS="-stdlib=libc++" pip install --editable ./
+
+pip install sacrebleu
+
 git clone https://github.com/moses-smt/mosesdecoder.git
 git clone https://github.com/rsennrich/subword-nmt.git
 ```
