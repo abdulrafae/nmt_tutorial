@@ -1,22 +1,27 @@
 # NMT Tutorial
 
-Installing dependencies
+## Installing dependencies
+Setting up fairseq toolkit
 ```
-# Setting up fairseq toolkit
 git clone https://github.com/pytorch/fairseq
 cd fairseq
 pip install --editable ./
 
 # on MacOS:
 # CFLAGS="-stdlib=libc++" pip install --editable ./
+```
 
-# Installing evaluation packages
+Installing evaluation packages
+```
 pip install sacrebleu
-
-# Installing tokenization packages
+```
+Installing tokenization packages
+```
 git clone https://github.com/moses-smt/mosesdecoder.git
+```
 
-# Installing Byte-pair Encoding pacakges
+Installing Byte-pair Encoding pacakges
+```
 git clone https://github.com/rsennrich/subword-nmt.git
 ```
 
