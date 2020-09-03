@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 SCRIPTS=mosesdecoder/scripts
-GPU=2
+GPU=0
 
 SRC=fr
 TRG=en
@@ -11,7 +11,7 @@ DATA_BIN=data-bin/iwslt17_${SRC}_${TRG}
 mkdir -p $DATA_BIN
 
 #(5) Word to Integer Sequence
-fairseq-preprocess --source-lang ${SRC} --target-lang ${TRG} \
+python fairseq/preprocess.py --source-lang ${SRC} --target-lang ${TRG} \
     --trainpref $TEXT/train --validpref $TEXT/valid \
     --destdir $DATA_BIN \
     --workers 20
@@ -22,7 +22,7 @@ mkdir -p  $CPKT $LOG
 
 
 #(6) Train NMT Model (Convolutional Seq2Seq)
-CUDA_VISIBLE_DEVICES=$GPU fairseq-train $DATA_BIN \
+CUDA_VISIBLE_DEVICES=$GPU python fairseq/train.py $DATA_BIN \
 	--lr 0.25 --clip-norm 0.1 --dropout 0.2 \
 	--max-tokens 4000 \
 	--arch fconv_iwslt_de_en \
