@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 SCRIPTS=mosesdecoder/scripts
-GPU=2
+GPU=0
 
 SRC=fr
 TRG=en
@@ -9,7 +9,7 @@ TEXT=iwslt17.tokenized.fr-en
 #(7) Decoding NMT Model
 RESULT=result/iwslt17_${SRC}_${TRG}
 mkdir -p $RESULT
-CUDA_VISIBLE_DEVICES=$GPU fairseq-interactive $DATA_BIN \
+CUDA_VISIBLE_DEVICES=$GPU python fairseq/interactive.py $DATA_BIN \
     --path $CPKT/checkpoint_best.pt \
     --buffer-size 2000 --batch-size 128 \
     --beam 5 --remove-bpe \
