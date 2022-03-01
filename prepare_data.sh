@@ -35,16 +35,16 @@ ORIG=orig
 mkdir -p $ORIG $TMP $PREP
 
 #(1) Download Parallel Data 
-echo "Downloading data from ${URL}..."
+#echo "Downloading data from ${URL}..."
 cd $ORIG
-wget "$URL"
+#wget "$URL"
 
-if [ -f $GZ ]; then
-    echo "Data successfully downloaded."
-else
-    echo "Data not successfully downloaded."
-    exit
-fi
+#if [ -f $GZ ]; then
+#    echo "Data successfully downloaded."
+#else
+#    echo "Data not successfully downloaded."
+#    exit
+#fi
 
 tar zxvf $GZ
 cd ..
