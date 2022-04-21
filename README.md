@@ -26,7 +26,15 @@ git clone https://github.com/rsennrich/subword-nmt.git
 ```
 
 ## Download and Pre-process IWSLT'17 French-English data
+Download the dataset from the link
 ```
+https://wit3.fbk.eu/2017-01-c
+```
+Extract the data and preprocess
+```
+tar -xvzf 2017-01-trnted.tgz
+mkdir orig
+mv 2017-01-trnted/texts/fr/en/fr-en.tgz orig/
 bash prepare_data.sh
 ```
 
