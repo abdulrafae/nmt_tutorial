@@ -6,7 +6,10 @@ SRC=fr
 TRG=en
 TEXT=iwslt17.tokenized.fr-en
 
+
 #(7) Decoding NMT Model
+DATA_BIN=data-bin/iwslt17_${SRC}_${TRG}
+CPKT=checkpoint/iwslt17_${SRC}_${TRG}
 RESULT=result/iwslt17_${SRC}_${TRG}
 mkdir -p $RESULT
 CUDA_VISIBLE_DEVICES=$GPU python fairseq/interactive.py $DATA_BIN \
