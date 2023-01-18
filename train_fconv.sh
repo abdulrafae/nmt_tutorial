@@ -30,4 +30,4 @@ CUDA_VISIBLE_DEVICES=$GPU fairseq-train $DATA_BIN \
   --optimizer nag --label-smoothing 0.1 \
   --lr-scheduler fixed --force-anneal 50 \
   --max-epoch 50 --patience 5 \
-  --save-dir $CPKT --no-epoch-checkpoint | tee $LOG/train_fconv.out	
+  --save-dir $CPKT --no-epoch-checkpoints | tee $LOG/train_fconv.out	
