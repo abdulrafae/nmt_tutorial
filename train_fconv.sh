@@ -11,7 +11,7 @@ DATA_BIN=data-bin/iwslt17_${SRC}_${TRG}
 mkdir -p $DATA_BIN
 
 #(5) Word to Integer Sequence
-python fairseq/preprocess.py --source-lang ${SRC} --target-lang ${TRG} \
+fairseq-preprocess --source-lang ${SRC} --target-lang ${TRG} \
     --trainpref $TEXT/train --validpref $TEXT/valid \
     --destdir $DATA_BIN \
     --workers 20
@@ -22,12 +22,12 @@ mkdir -p  $CPKT $LOG
 
 
 #(6) Train NMT Model (Convolutional Seq2Seq)
-CUDA_VISIBLE_DEVICES=$GPU python fairseq/train.py $DATA_BIN \
-	--lr 0.25 --clip-norm 0.1 --dropout 0.2 \
-	--max-tokens 4000 \
-	--arch fconv_iwslt_de_en \
-        --criterion label_smoothed_cross_entropy \
-        --optimizer nag --label-smoothing 0.1 \
-        --lr-scheduler fixed --force-anneal 50 \
-	--max-epoch 50 --patience 5 \
-	--save-dir $CPKT | tee $LOG/train_fconv.out	
+CUDA_VISIBLE_DEVICES=$GPU fairseq-train $DATA_BIN \
+  --lr 0.25 --clip-norm 0.1 --dropout 0.2 \
+  --max-tokens 4000 \
+  --arch fconv_iwslt_de_en \
+  --criterion label_smoothed_cross_entropy \
+  --optimizer nag --label-smoothing 0.1 \
+  --lr-scheduler fixed --force-anneal 50 \
+  --max-epoch 50 --patience 5 \
+  --save-dir $CPKT --no-epoch-checkpoint | tee $LOG/train_fconv.out	
