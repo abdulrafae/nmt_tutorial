@@ -30,20 +30,18 @@ ORIG=orig
 
 mkdir -p $ORIG $TMP $PREP
 
-#(1) Download Parallel Data 
+#(1) Download Parallel Data - for old version only
 #echo "Downloading data from ${URL}..."
-cd $ORIG
+#cd $ORIG
 #wget "$URL"
-
 #if [ -f $GZ ]; then
 #    echo "Data successfully downloaded."
 #else
 #    echo "Data not successfully downloaded."
 #    exit
 #fi
-
-tar zxvf $GZ
-cd ..
+#tar zxvf $GZ
+#cd ..
 
 #(2) Extract Raw Data
 #(3) Tokenize Data
