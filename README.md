@@ -26,8 +26,9 @@ git clone https://github.com/rsennrich/subword-nmt.git
 ```
 
 ## Download and Pre-process IWSLT'17 French-English data
-Change current directory
+Clone the repository and change the current directory
 ```
+git clone https://github.com/abdulrafae/nmt_tutorial.git
 cd nmt_tutorial
 ```
 Download the dataset inside the current directory from the following link:
