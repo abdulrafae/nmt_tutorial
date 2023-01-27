@@ -33,6 +33,9 @@ Extract the data and preprocess
 tar -xvzf 2017-01-trnted.tgz
 mkdir orig
 mv 2017-01-trnted/texts/fr/en/fr-en.tgz orig/
+cd orig/
+tar -xvzf fr-en.tgz
+cd ..
 bash prepare_data.sh
 ```
 
